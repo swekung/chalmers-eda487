@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="EDA487" Database="" Version="10.0.0">
+  <Project Name="Hemmuppgifter_1" Path="C/C.project" Active="No"/>
+  <Project Name="Keypad" Path="Keypad/Keypad.project" Active="No"/>
+  <Project Name="Delay" Path="Delay/Delay.project" Active="No"/>
+  <Project Name="ASCII_Disp" Path="ASCII_Disp/ASCII_Disp.project" Active="No"/>
+  <Project Name="graphicasciidisplay" Path="graphicasciidisplay/graphicasciidisplay.project" Active="No"/>
+  <Project Name="graphicdisplay" Path="graphicdisplay/graphicdisplay.project" Active="Yes"/>
+  <Project Name="autopong" Path="autopong/autopong.project" Active="No"/>
+  <Project Name="systick_irq" Path="systick_irq/systick_irq.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Keypad" ConfigName="Debug"/>
+      <Project Name="Hemmuppgifter_1" ConfigName="Debug"/>
+      <Project Name="Delay" ConfigName="Debug"/>
+      <Project Name="ASCII_Disp" ConfigName="Debug"/>
+      <Project Name="graphicasciidisplay" ConfigName="Debug"/>
+      <Project Name="graphicdisplay" ConfigName="Debug"/>
+      <Project Name="autopong" ConfigName="Debug"/>
+      <Project Name="systick_irq" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Hemmuppgifter_1" ConfigName="Release"/>
+      <Project Name="Keypad" ConfigName="Release"/>
+      <Project Name="Delay" ConfigName="Release"/>
+      <Project Name="ASCII_Disp" ConfigName="Release"/>
+      <Project Name="graphicasciidisplay" ConfigName="Release"/>
+      <Project Name="graphicdisplay" ConfigName="Release"/>
+      <Project Name="autopong" ConfigName="Release"/>
+      <Project Name="systick_irq" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
