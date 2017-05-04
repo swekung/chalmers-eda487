@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="hemuppgifter" Database="" Version="10.0.0">
+  <Project Name="graphicdisplay" Path="graphicdisplay/graphicdisplay.project" Active="No"/>
+  <Project Name="autopong" Path="autopong/autopong.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="SDLproject" ConfigName="Debug"/>
+      <Project Name="basic_io" ConfigName="Debug"/>
+      <Project Name="Keypad_lulle" ConfigName="Debug"/>
+      <Project Name="Keypad" ConfigName="Debug"/>
+      <Project Name="SysTick" ConfigName="Debug"/>
+      <Project Name="asciidisplay" ConfigName="Debug"/>
+      <Project Name="graphicdisplay" ConfigName="Debug"/>
+      <Project Name="autopong" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="SDLproject" ConfigName="Release"/>
+      <Project Name="basic_io" ConfigName="Release"/>
+      <Project Name="Keypad_lulle" ConfigName="Release"/>
+      <Project Name="Keypad" ConfigName="Release"/>
+      <Project Name="SysTick" ConfigName="Release"/>
+      <Project Name="asciidisplay" ConfigName="Release"/>
+      <Project Name="graphicdisplay" ConfigName="Release"/>
+      <Project Name="autopong" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

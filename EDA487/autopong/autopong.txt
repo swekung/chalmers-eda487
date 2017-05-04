@@ -1,1 +1,0 @@
-./Debug/startup.c.o ./Debug/up_graphicdisplay_delay.c.o ./Debug/up_graphicdisplay_display.c.o ./Debug/up_graphicdisplay_object.c.o ./Debug/keypad.c.o

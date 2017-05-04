@@ -1,1 +1,0 @@
-./Debug/startup.c.o ./Debug/display.c.o ./Debug/delay.c.o
