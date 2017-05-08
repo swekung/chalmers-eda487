@@ -1,0 +1,1 @@
+./Debug/startup.c.o ./Debug/up_libraries_delay.c.o ./Debug/up_libraries_display.c.o ./Debug/up_libraries_keypad.c.o ./Debug/up_libraries_object.c.o

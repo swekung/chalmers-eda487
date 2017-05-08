@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="autopong" InternalType="User templates" Version="10.0.0">
+<CodeLite_Project Name="systick_irq" Version="10.0.0" InternalType="User templates">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
@@ -21,16 +21,17 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="startup.c"/>
-    <File Name="display.c"/>
-    <File Name="gpio.h"/>
-    <File Name="bitar.h"/>
-    <File Name="delay.h"/>
-    <File Name="object.h"/>
-    <File Name="object.c"/>
-    <File Name="delay.c"/>
-    <File Name="display.h"/>
-    <File Name="keypad.c"/>
-    <File Name="keypad.h"/>
+    <File Name="../libraries/delay.h"/>
+    <File Name="../libraries/bitar.h"/>
+    <File Name="../libraries/display.h"/>
+    <File Name="../libraries/gpio.h"/>
+    <File Name="../libraries/irq.h"/>
+    <File Name="../libraries/keypad.h"/>
+    <File Name="../libraries/object.h"/>
+    <File Name="../libraries/delay.c"/>
+    <File Name="../libraries/display.c"/>
+    <File Name="../libraries/keypad.c"/>
+    <File Name="../libraries/object.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
@@ -46,12 +47,12 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="Cross GCC ( arm-none-eabi )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-mthumb;-march=armv6-m;-msoft-float;-Wa,-adhln=test.s" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="."/>
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-mthumb;-Wall;-march=armv6-m;-msoft-float;-Wa,-adhln=test.s" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="/Users/Simon/chalmers-eda487/libraries"/>
       </Compiler>
-      <Linker Options="-nostartfiles;-T$(ProjectPath)/md407-ram.x" Required="yes">
-        <LibraryPath Value="$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/armv6-m"/>
-        <LibraryPath Value="$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/5.4.1/armv6-m"/>
+      <Linker Options="-nostartfiles;-nostdlib;-T$(ProjectPath)/md407-ram.x" Required="yes">
+        <LibraryPath Value="/Applications/gcc-arm/arm-none-eabi/lib/armv6-m"/>
+        <LibraryPath Value="/Applications/gcc-arm/lib/gcc/arm-none-eabi/5.4.1/armv6-m"/>
         <Library Value="gcc"/>
         <Library Value="c_nano"/>
       </Linker>
@@ -93,13 +94,13 @@ monitor restart</PostConnectCommands>
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="Cross GCC ( arm-none-eabi )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall;-mthumb;-march=armv6-m;-msoft-float;-Wa,-adhln=test.s" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
-      <Linker Options="-nostartfiles;-T$(ProjectPath)/md407-ram.x" Required="yes">
-        <LibraryPath Value="$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/armv6-m"/>
-        <LibraryPath Value="$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/5.4.1/armv6-m"/>
+      <Linker Options="-nostartfiles;-nostdlib;-T$(ProjectPath)/md407-ram.x" Required="yes">
+        <LibraryPath Value="/Applications/gcc-arm/arm-none-eabi/lib/armv6-m"/>
+        <LibraryPath Value="/Applications/gcc-arm/lib/gcc/arm-none-eabi/5.4.1/armv6-m"/>
         <Library Value="gcc"/>
         <Library Value="c_nano"/>
       </Linker>
@@ -140,6 +141,4 @@ monitor restart</PostConnectCommands>
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>
