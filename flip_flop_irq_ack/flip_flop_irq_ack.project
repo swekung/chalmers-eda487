@@ -21,11 +21,6 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="startup.c"/>
-    <File Name="../libraries/gpio.h"/>
-    <File Name="../libraries/irq.h"/>
-    <File Name="exti.h"/>
-    <File Name="types.h"/>
-    <File Name="syscfg.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
@@ -135,4 +130,6 @@ monitor restart</PostConnectCommands>
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

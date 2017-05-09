@@ -21,10 +21,37 @@ asm volatile(
 #include "syscfg.h"
 
 uint16_t count = 0;
+uint8_t diodes = 0;
+
+void resetIRQ(uint8_t rstPin)
+{
+	GPIO_E.odr_low &= (0xFF & (0x10 << rstPin));
+	GPIO_E.odr_low &= (0xFF & ~(0x10 << rstPin));
+}
 
 void irq_handler()
 {
-	count++;
+	uint8_t tempIn = GPIO_E.idr_low;
+	if(tempIn == 0x01)
+	{
+		 resetIRQ(0x00); /* Handle interrupt from IRQ0 */
+		 count++;
+	}
+	if(tempIn == 0x02)
+	{
+		 resetIRQ(0x01); /* Handle interrupt from IRQ1 */
+		 count = 0;
+	}
+	if(tempIn == 0x04)
+	{
+		 resetIRQ(0x02); /* Handle interrupt from IRQ1 */
+		 if(diodes == 0)
+		 {
+			 diodes = 0xFF;
+		 } else {
+			 diodes = 0;
+		 }
+	}
 	EXTI.pr |= (1 << 3);
 }
 
@@ -43,7 +70,7 @@ void irq_init()
 
 void app_init()
 {
-	GPIO_D.moder = 0x00005555;
+	GPIO_D.moder = 0x55555555;
 	GPIO_E.moder = 0x00005500;
 }
 void main(void)
@@ -53,6 +80,7 @@ void main(void)
 	while(1)
 	{
 		GPIO_D.odr_low = count;
+		GPIO_D.odr_high = diodes;
 	}
 }
 

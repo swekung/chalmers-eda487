@@ -1,18 +1,22 @@
-Debug/startup.c.o: startup.c types.h \
- /Users/Simon/chalmers-eda487/libraries/gpio.h types.h \
+Debug/startup.c.o: startup.c \
+ /Users/Simon/chalmers-eda487/libraries/types.h \
+ /Users/Simon/chalmers-eda487/libraries/gpio.h \
+ /Users/Simon/chalmers-eda487/libraries/types.h \
  /Users/Simon/chalmers-eda487/libraries/irq.h \
- /Users/Simon/chalmers-eda487/libraries/gpio.h exti.h syscfg.h
+ /Users/Simon/chalmers-eda487/libraries/gpio.h \
+ /Users/Simon/chalmers-eda487/libraries/exti.h \
+ /Users/Simon/chalmers-eda487/libraries/syscfg.h
 
-types.h:
+/Users/Simon/chalmers-eda487/libraries/types.h:
 
 /Users/Simon/chalmers-eda487/libraries/gpio.h:
 
-types.h:
+/Users/Simon/chalmers-eda487/libraries/types.h:
 
 /Users/Simon/chalmers-eda487/libraries/irq.h:
 
 /Users/Simon/chalmers-eda487/libraries/gpio.h:
 
-exti.h:
+/Users/Simon/chalmers-eda487/libraries/exti.h:
 
-syscfg.h:
+/Users/Simon/chalmers-eda487/libraries/syscfg.h:
