@@ -5,6 +5,7 @@
 
 typedef void(*IRQ_FUNCPTR)(uint32_t);
 
+/*vektortabellen*/
 typedef struct irq_vectors {
 	IRQ_FUNCPTR reserved00;
 	IRQ_FUNCPTR reset;
@@ -22,14 +23,21 @@ typedef struct irq_vectors {
 	IRQ_FUNCPTR reserved34;
 	IRQ_FUNCPTR pendSv;
 	IRQ_FUNCPTR sysTick;
+	IRQ_FUNCPTR windowWatchdog;
+	IRQ_FUNCPTR pvd;
+	IRQ_FUNCPTR tamperTimeStamp;
+	IRQ_FUNCPTR rtcWakeup;
+	IRQ_FUNCPTR flash;
+	IRQ_FUNCPTR rccGlobal;
+	IRQ_FUNCPTR extiLine0;
+	IRQ_FUNCPTR extiLine1;
+	IRQ_FUNCPTR extiLine2;
+	IRQ_FUNCPTR extiLine3;
+	IRQ_FUNCPTR extiLine4;
 } IRQ_VECTORS, *PIRQ_VECTORS;
 
 #define IRQ_R_ADDRESS 0x2001c000
-#define IRQ (*((PIRQ_VECTORS)IRQ_R_ADDRESS))
-
-#define SCB_VTOR *((int*)0xe000ed08)
-
-
-
+#define IRQ_R ((PIRQ_VECTORS)IRQ_R_ADDRESS)
+#define IRQ (*IRQ_R)
 
 #endif

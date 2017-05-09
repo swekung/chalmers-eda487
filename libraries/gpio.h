@@ -1,14 +1,10 @@
 #ifndef GPIO_H
 #define GPIO_H
 
+#include "types.h"
 
 /*alias skapas för att undvika onödiga repetitioner*/
-typedef unsigned int uint32_t;
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
-typedef signed int sint32_t;
-typedef signed short sint16_t;
-typedef signed char sint8_t;
+
 
 /*struct som innehåller definition av en gpio port
  * structuren som i boken s.67*/
@@ -53,6 +49,7 @@ Start: 		LDR	R6,=0x00000018
 			ORR	R5,R5,R6
 			STR	R5,[R4] */
 #define RCC_AHB1ENR (*((uint32_t* ) 0x40023830))
+#define RCC_APB2ENR *((uint32_t*)0x40023844)
 /*bit 4, satt för aktivera clockan*/
 #define RCC_GPIO_D 0x00000008
 /*bit 5*/ 

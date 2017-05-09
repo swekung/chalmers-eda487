@@ -12,354 +12,370 @@
   12              		.eabi_attribute 18, 4
   13              		.thumb
   14              		.syntax unified
-  15              		.file	"object.c"
+  15              		.file	"startup.c"
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.align	2
-  20              		.global	set_object_speed
-  21              		.code	16
-  22              		.thumb_func
-  24              	set_object_speed:
-  25              	.LFB0:
-  26              		.file 1 "/Users/Simon/chalmers-eda487/libraries/object.c"
-   1:/Users/Simon/chalmers-eda487/libraries/object.c **** #include "gpio.h"
-   2:/Users/Simon/chalmers-eda487/libraries/object.c **** #include "object.h"
-   3:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-   4:/Users/Simon/chalmers-eda487/libraries/object.c **** /*
-   5:/Users/Simon/chalmers-eda487/libraries/object.c **** typedef struct tPoint
-   6:/Users/Simon/chalmers-eda487/libraries/object.c **** {
-   7:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint8_t x;
-   8:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint8_t y;
-   9:/Users/Simon/chalmers-eda487/libraries/object.c **** } POINT;
-  10:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  11:/Users/Simon/chalmers-eda487/libraries/object.c **** typedef struct tGeometry
-  12:/Users/Simon/chalmers-eda487/libraries/object.c **** {
-  13:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint32_t numpoints;	
-  14:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint32_t sizex;
-  15:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint32_t sizey;
-  16:/Users/Simon/chalmers-eda487/libraries/object.c **** 	POINT px[MAX_POINTS];
-  17:/Users/Simon/chalmers-eda487/libraries/object.c **** } GEOMETRY, *PGEOMETRY;
-  18:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  19:/Users/Simon/chalmers-eda487/libraries/object.c **** typedef struct tObject
-  20:/Users/Simon/chalmers-eda487/libraries/object.c **** {
-  21:/Users/Simon/chalmers-eda487/libraries/object.c **** 	PGEOMETRY geo;
-  22:/Users/Simon/chalmers-eda487/libraries/object.c **** 	sint32_t dirx,diry;
-  23:/Users/Simon/chalmers-eda487/libraries/object.c **** 	uint32_t posx,posy;
-  24:/Users/Simon/chalmers-eda487/libraries/object.c **** 	void (* draw) (struct tObj *);
-  25:/Users/Simon/chalmers-eda487/libraries/object.c **** 	void (* clear) (struct tObj *);
-  26:/Users/Simon/chalmers-eda487/libraries/object.c **** 	void (* move) (struct tObj *);
-  27:/Users/Simon/chalmers-eda487/libraries/object.c **** 	void (* set_speed) (struct tObj *, sint32_t, sint32_t);
-  28:/Users/Simon/chalmers-eda487/libraries/object.c **** } OBJECT, *POBJECT;
-  29:/Users/Simon/chalmers-eda487/libraries/object.c **** */
-  30:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  31:/Users/Simon/chalmers-eda487/libraries/object.c **** void set_object_speed(POBJECT o, sint32_t speedx, sint32_t speedy){
-  27              		.loc 1 31 0
-  28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 16
-  30              		@ frame_needed = 1, uses_anonymous_args = 0
-  31 0000 80B5     		push	{r7, lr}
-  32              		.cfi_def_cfa_offset 8
-  33              		.cfi_offset 7, -8
-  34              		.cfi_offset 14, -4
-  35 0002 84B0     		sub	sp, sp, #16
-  36              		.cfi_def_cfa_offset 24
-  37 0004 00AF     		add	r7, sp, #0
-  38              		.cfi_def_cfa_register 7
-  39 0006 F860     		str	r0, [r7, #12]
-  40 0008 B960     		str	r1, [r7, #8]
-  41 000a 7A60     		str	r2, [r7, #4]
-  32:/Users/Simon/chalmers-eda487/libraries/object.c **** 	o->dirx = speedx;
-  42              		.loc 1 32 0
-  43 000c BA68     		ldr	r2, [r7, #8]
-  44 000e FB68     		ldr	r3, [r7, #12]
-  45 0010 5A60     		str	r2, [r3, #4]
-  33:/Users/Simon/chalmers-eda487/libraries/object.c **** 	o->diry = speedy;
-  46              		.loc 1 33 0
-  47 0012 7A68     		ldr	r2, [r7, #4]
-  48 0014 FB68     		ldr	r3, [r7, #12]
-  49 0016 9A60     		str	r2, [r3, #8]
-  34:/Users/Simon/chalmers-eda487/libraries/object.c **** }
-  50              		.loc 1 34 0
-  51 0018 C046     		nop
-  52 001a BD46     		mov	sp, r7
-  53 001c 04B0     		add	sp, sp, #16
-  54              		@ sp needed
-  55 001e 80BD     		pop	{r7, pc}
-  56              		.cfi_endproc
-  57              	.LFE0:
-  59              		.align	2
-  60              		.global	draw_object
-  61              		.code	16
-  62              		.thumb_func
-  64              	draw_object:
-  65              	.LFB1:
-  35:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  36:/Users/Simon/chalmers-eda487/libraries/object.c **** void draw_object(POBJECT o){
-  66              		.loc 1 36 0
-  67              		.cfi_startproc
-  68              		@ args = 0, pretend = 0, frame = 16
-  69              		@ frame_needed = 1, uses_anonymous_args = 0
-  70 0020 80B5     		push	{r7, lr}
-  71              		.cfi_def_cfa_offset 8
-  72              		.cfi_offset 7, -8
-  73              		.cfi_offset 14, -4
-  74 0022 84B0     		sub	sp, sp, #16
-  75              		.cfi_def_cfa_offset 24
-  76 0024 00AF     		add	r7, sp, #0
-  77              		.cfi_def_cfa_register 7
-  78 0026 7860     		str	r0, [r7, #4]
-  79              	.LBB2:
-  37:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
-  80              		.loc 1 37 0
-  81 0028 0023     		movs	r3, #0
-  82 002a FB60     		str	r3, [r7, #12]
-  83 002c 1EE0     		b	.L3
-  84              	.L4:
-  85              	.LBB3:
-  38:/Users/Simon/chalmers-eda487/libraries/object.c **** 		POINT px = o->geo->px[i];
-  86              		.loc 1 38 0 discriminator 3
-  87 002e 7B68     		ldr	r3, [r7, #4]
-  88 0030 1968     		ldr	r1, [r3]
-  89 0032 0823     		movs	r3, #8
-  90 0034 FB18     		adds	r3, r7, r3
-  91 0036 FA68     		ldr	r2, [r7, #12]
-  92 0038 0432     		adds	r2, r2, #4
-  93 003a 0420     		movs	r0, #4
-  94 003c 5200     		lsls	r2, r2, #1
-  95 003e 8A18     		adds	r2, r1, r2
-  96 0040 1218     		adds	r2, r2, r0
-  97 0042 1288     		ldrh	r2, [r2]
-  98 0044 1A80     		strh	r2, [r3]
-  39:/Users/Simon/chalmers-eda487/libraries/object.c **** 		pixel(o->posx + px.x, o->posy + px.y,1);
-  99              		.loc 1 39 0 discriminator 3
- 100 0046 7B68     		ldr	r3, [r7, #4]
- 101 0048 DB68     		ldr	r3, [r3, #12]
- 102 004a 0822     		movs	r2, #8
- 103 004c BA18     		adds	r2, r7, r2
- 104 004e 1278     		ldrb	r2, [r2]
- 105 0050 9818     		adds	r0, r3, r2
- 106 0052 7B68     		ldr	r3, [r7, #4]
- 107 0054 1B69     		ldr	r3, [r3, #16]
- 108 0056 0822     		movs	r2, #8
- 109 0058 BA18     		adds	r2, r7, r2
- 110 005a 5278     		ldrb	r2, [r2, #1]
- 111 005c 9B18     		adds	r3, r3, r2
- 112 005e 0122     		movs	r2, #1
- 113 0060 1900     		movs	r1, r3
- 114 0062 FFF7FEFF 		bl	pixel
- 115              	.LBE3:
-  37:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
- 116              		.loc 1 37 0 discriminator 3
- 117 0066 FB68     		ldr	r3, [r7, #12]
- 118 0068 0133     		adds	r3, r3, #1
- 119 006a FB60     		str	r3, [r7, #12]
- 120              	.L3:
-  37:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
- 121              		.loc 1 37 0 is_stmt 0 discriminator 1
- 122 006c 7B68     		ldr	r3, [r7, #4]
- 123 006e 1B68     		ldr	r3, [r3]
- 124 0070 1A68     		ldr	r2, [r3]
- 125 0072 FB68     		ldr	r3, [r7, #12]
- 126 0074 9A42     		cmp	r2, r3
- 127 0076 DAD8     		bhi	.L4
- 128              	.LBE2:
-  40:/Users/Simon/chalmers-eda487/libraries/object.c **** 	}
-  41:/Users/Simon/chalmers-eda487/libraries/object.c **** }
- 129              		.loc 1 41 0 is_stmt 1
- 130 0078 C046     		nop
- 131 007a BD46     		mov	sp, r7
- 132 007c 04B0     		add	sp, sp, #16
- 133              		@ sp needed
- 134 007e 80BD     		pop	{r7, pc}
- 135              		.cfi_endproc
- 136              	.LFE1:
- 138              		.align	2
- 139              		.global	clear_object
- 140              		.code	16
- 141              		.thumb_func
- 143              	clear_object:
- 144              	.LFB2:
-  42:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  43:/Users/Simon/chalmers-eda487/libraries/object.c **** void clear_object(POBJECT o){
- 145              		.loc 1 43 0
- 146              		.cfi_startproc
- 147              		@ args = 0, pretend = 0, frame = 16
- 148              		@ frame_needed = 1, uses_anonymous_args = 0
- 149 0080 80B5     		push	{r7, lr}
- 150              		.cfi_def_cfa_offset 8
- 151              		.cfi_offset 7, -8
- 152              		.cfi_offset 14, -4
- 153 0082 84B0     		sub	sp, sp, #16
- 154              		.cfi_def_cfa_offset 24
- 155 0084 00AF     		add	r7, sp, #0
- 156              		.cfi_def_cfa_register 7
- 157 0086 7860     		str	r0, [r7, #4]
- 158              	.LBB4:
-  44:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
- 159              		.loc 1 44 0
- 160 0088 0023     		movs	r3, #0
- 161 008a FB60     		str	r3, [r7, #12]
- 162 008c 1EE0     		b	.L6
- 163              	.L7:
- 164              	.LBB5:
-  45:/Users/Simon/chalmers-eda487/libraries/object.c **** 		POINT px = o->geo->px[i];
- 165              		.loc 1 45 0 discriminator 3
- 166 008e 7B68     		ldr	r3, [r7, #4]
- 167 0090 1968     		ldr	r1, [r3]
- 168 0092 0823     		movs	r3, #8
- 169 0094 FB18     		adds	r3, r7, r3
- 170 0096 FA68     		ldr	r2, [r7, #12]
- 171 0098 0432     		adds	r2, r2, #4
- 172 009a 0420     		movs	r0, #4
- 173 009c 5200     		lsls	r2, r2, #1
- 174 009e 8A18     		adds	r2, r1, r2
- 175 00a0 1218     		adds	r2, r2, r0
- 176 00a2 1288     		ldrh	r2, [r2]
- 177 00a4 1A80     		strh	r2, [r3]
-  46:/Users/Simon/chalmers-eda487/libraries/object.c **** 		pixel(o->posx + px.x, o->posy + px.y,0);
- 178              		.loc 1 46 0 discriminator 3
- 179 00a6 7B68     		ldr	r3, [r7, #4]
- 180 00a8 DB68     		ldr	r3, [r3, #12]
- 181 00aa 0822     		movs	r2, #8
- 182 00ac BA18     		adds	r2, r7, r2
- 183 00ae 1278     		ldrb	r2, [r2]
- 184 00b0 9818     		adds	r0, r3, r2
- 185 00b2 7B68     		ldr	r3, [r7, #4]
- 186 00b4 1B69     		ldr	r3, [r3, #16]
- 187 00b6 0822     		movs	r2, #8
- 188 00b8 BA18     		adds	r2, r7, r2
- 189 00ba 5278     		ldrb	r2, [r2, #1]
- 190 00bc 9B18     		adds	r3, r3, r2
- 191 00be 0022     		movs	r2, #0
- 192 00c0 1900     		movs	r1, r3
- 193 00c2 FFF7FEFF 		bl	pixel
- 194              	.LBE5:
-  44:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
- 195              		.loc 1 44 0 discriminator 3
- 196 00c6 FB68     		ldr	r3, [r7, #12]
- 197 00c8 0133     		adds	r3, r3, #1
- 198 00ca FB60     		str	r3, [r7, #12]
- 199              	.L6:
-  44:/Users/Simon/chalmers-eda487/libraries/object.c **** 	for(uint32_t i = 0; i < o->geo->numpoints; i++){
- 200              		.loc 1 44 0 is_stmt 0 discriminator 1
- 201 00cc 7B68     		ldr	r3, [r7, #4]
- 202 00ce 1B68     		ldr	r3, [r3]
- 203 00d0 1A68     		ldr	r2, [r3]
- 204 00d2 FB68     		ldr	r3, [r7, #12]
- 205 00d4 9A42     		cmp	r2, r3
- 206 00d6 DAD8     		bhi	.L7
- 207              	.LBE4:
-  47:/Users/Simon/chalmers-eda487/libraries/object.c **** 	}
-  48:/Users/Simon/chalmers-eda487/libraries/object.c **** }
- 208              		.loc 1 48 0 is_stmt 1
- 209 00d8 C046     		nop
- 210 00da BD46     		mov	sp, r7
- 211 00dc 04B0     		add	sp, sp, #16
- 212              		@ sp needed
- 213 00de 80BD     		pop	{r7, pc}
- 214              		.cfi_endproc
- 215              	.LFE2:
- 217              		.align	2
- 218              		.global	move_object
- 219              		.code	16
- 220              		.thumb_func
- 222              	move_object:
- 223              	.LFB3:
-  49:/Users/Simon/chalmers-eda487/libraries/object.c **** 
-  50:/Users/Simon/chalmers-eda487/libraries/object.c **** void move_object(POBJECT o){
- 224              		.loc 1 50 0
- 225              		.cfi_startproc
- 226              		@ args = 0, pretend = 0, frame = 8
- 227              		@ frame_needed = 1, uses_anonymous_args = 0
- 228 00e0 80B5     		push	{r7, lr}
- 229              		.cfi_def_cfa_offset 8
- 230              		.cfi_offset 7, -8
- 231              		.cfi_offset 14, -4
- 232 00e2 82B0     		sub	sp, sp, #8
- 233              		.cfi_def_cfa_offset 16
- 234 00e4 00AF     		add	r7, sp, #0
- 235              		.cfi_def_cfa_register 7
- 236 00e6 7860     		str	r0, [r7, #4]
-  51:/Users/Simon/chalmers-eda487/libraries/object.c **** 	clear_object(o);
- 237              		.loc 1 51 0
- 238 00e8 7B68     		ldr	r3, [r7, #4]
- 239 00ea 1800     		movs	r0, r3
- 240 00ec FFF7FEFF 		bl	clear_object
-  52:/Users/Simon/chalmers-eda487/libraries/object.c **** 	o->posx += o->dirx;
- 241              		.loc 1 52 0
- 242 00f0 7B68     		ldr	r3, [r7, #4]
- 243 00f2 DA68     		ldr	r2, [r3, #12]
- 244 00f4 7B68     		ldr	r3, [r7, #4]
- 245 00f6 5B68     		ldr	r3, [r3, #4]
- 246 00f8 D218     		adds	r2, r2, r3
- 247 00fa 7B68     		ldr	r3, [r7, #4]
- 248 00fc DA60     		str	r2, [r3, #12]
-  53:/Users/Simon/chalmers-eda487/libraries/object.c **** 	o->posy += o->diry;
- 249              		.loc 1 53 0
- 250 00fe 7B68     		ldr	r3, [r7, #4]
- 251 0100 1A69     		ldr	r2, [r3, #16]
- 252 0102 7B68     		ldr	r3, [r7, #4]
- 253 0104 9B68     		ldr	r3, [r3, #8]
- 254 0106 D218     		adds	r2, r2, r3
- 255 0108 7B68     		ldr	r3, [r7, #4]
- 256 010a 1A61     		str	r2, [r3, #16]
-  54:/Users/Simon/chalmers-eda487/libraries/object.c **** 	if((o->posx < 1 ) || (o->posx > 128)){
- 257              		.loc 1 54 0
- 258 010c 7B68     		ldr	r3, [r7, #4]
- 259 010e DB68     		ldr	r3, [r3, #12]
- 260 0110 002B     		cmp	r3, #0
- 261 0112 03D0     		beq	.L9
- 262              		.loc 1 54 0 is_stmt 0 discriminator 1
- 263 0114 7B68     		ldr	r3, [r7, #4]
- 264 0116 DB68     		ldr	r3, [r3, #12]
- 265 0118 802B     		cmp	r3, #128
- 266 011a 04D9     		bls	.L10
- 267              	.L9:
-  55:/Users/Simon/chalmers-eda487/libraries/object.c **** 		o->dirx = -o->dirx;
- 268              		.loc 1 55 0 is_stmt 1
- 269 011c 7B68     		ldr	r3, [r7, #4]
- 270 011e 5B68     		ldr	r3, [r3, #4]
- 271 0120 5A42     		rsbs	r2, r3, #0
- 272 0122 7B68     		ldr	r3, [r7, #4]
- 273 0124 5A60     		str	r2, [r3, #4]
- 274              	.L10:
-  56:/Users/Simon/chalmers-eda487/libraries/object.c **** 	}
-  57:/Users/Simon/chalmers-eda487/libraries/object.c **** 	if((o->posy < 1 ) || (o->posy > 64)){
- 275              		.loc 1 57 0
- 276 0126 7B68     		ldr	r3, [r7, #4]
- 277 0128 1B69     		ldr	r3, [r3, #16]
- 278 012a 002B     		cmp	r3, #0
- 279 012c 03D0     		beq	.L11
- 280              		.loc 1 57 0 is_stmt 0 discriminator 1
- 281 012e 7B68     		ldr	r3, [r7, #4]
- 282 0130 1B69     		ldr	r3, [r3, #16]
- 283 0132 402B     		cmp	r3, #64
- 284 0134 04D9     		bls	.L12
- 285              	.L11:
-  58:/Users/Simon/chalmers-eda487/libraries/object.c **** 		o->diry = -o->diry;
- 286              		.loc 1 58 0 is_stmt 1
- 287 0136 7B68     		ldr	r3, [r7, #4]
- 288 0138 9B68     		ldr	r3, [r3, #8]
- 289 013a 5A42     		rsbs	r2, r3, #0
- 290 013c 7B68     		ldr	r3, [r7, #4]
- 291 013e 9A60     		str	r2, [r3, #8]
- 292              	.L12:
-  59:/Users/Simon/chalmers-eda487/libraries/object.c **** 	}
-  60:/Users/Simon/chalmers-eda487/libraries/object.c **** 	draw_object(o);
- 293              		.loc 1 60 0
- 294 0140 7B68     		ldr	r3, [r7, #4]
- 295 0142 1800     		movs	r0, r3
- 296 0144 FFF7FEFF 		bl	draw_object
-  61:/Users/Simon/chalmers-eda487/libraries/object.c **** }...
- 297              		.loc 1 61 0
- 298 0148 C046     		nop
- 299 014a BD46     		mov	sp, r7
- 300 014c 02B0     		add	sp, sp, #8
- 301              		@ sp needed
- 302 014e 80BD     		pop	{r7, pc}
- 303              		.cfi_endproc
- 304              	.LFE3:
- 306              	.Letext0:
- 307              		.file 2 "/Users/Simon/chalmers-eda487/libraries/gpio.h"
- 308              		.file 3 "/Users/Simon/chalmers-eda487/libraries/object.h"
+  19              		.section	.start_section,"ax",%progbits
+  20              		.align	2
+  21              		.global	startup
+  22              		.code	16
+  23              		.thumb_func
+  25              	startup:
+  26              	.LFB0:
+  27              		.file 1 "/Users/Simon/chalmers-eda487/systick_irq/startup.c"
+   1:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** /*
+   2:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****  * 	startup.c
+   3:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****  *
+   4:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****  */
+   5:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****  
+   6:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+   7:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+   8:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+   9:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  10:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void startup(void) __attribute__((naked)) __attribute__((section (".start_section")) );
+  11:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  12:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void startup ( void )
+  13:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+  28              		.loc 1 13 0
+  29              		.cfi_startproc
+  30              		@ Naked Function: prologue and epilogue provided by programmer.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  14:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** asm volatile(
+  33              		.loc 1 14 0
+  34              		.syntax divided
+  35              	@ 14 "/Users/Simon/chalmers-eda487/systick_irq/startup.c" 1
+  36 0000 0248     		 LDR R0,=0x2001C000
+  37 0002 8546     	 MOV SP,R0
+  38 0004 FFF7FEFF 	 BL main
+  39 0008 FEE7     	.L1: B .L1
+  40              	
+  41              	@ 0 "" 2
+  15:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	" LDR R0,=0x2001C000\n"		/* set stack */
+  16:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	" MOV SP,R0\n"
+  17:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	" BL main\n"				/* call main */
+  18:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	".L1: B .L1\n"				/* never return */
+  19:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	) ;
+  20:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }
+  42              		.loc 1 20 0
+  43              		.thumb
+  44              		.syntax unified
+  45 000a C046     		nop
+  46              		.cfi_endproc
+  47              	.LFE0:
+  49              		.global	systick_flag
+  50              		.bss
+  53              	systick_flag:
+  54 0000 00       		.space	1
+  55              		.text
+  56              		.align	2
+  57              		.global	delay_250ns
+  58              		.code	16
+  59              		.thumb_func
+  61              	delay_250ns:
+  62              	.LFB1:
+  21:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  22:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #include "gpio.h"
+  23:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** //#include "delay.h"
+  24:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #include "irq.h"
+  25:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  26:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define SIMULATOR
+  27:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  28:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #ifdef SIMULATOR
+  29:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define DELAY_COUNT 100
+  30:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #else
+  31:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define DELAY_COUNT 1000000
+  32:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #endif
+  33:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  34:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** // Definiering av systick vektor
+  35:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  36:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** typedef struct sys_tick
+  37:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+  38:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****     uint32_t ctrl; 
+  39:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****     uint32_t load; 
+  40:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****     uint32_t val; 
+  41:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****     uint32_t calib;
+  42:/Users/Simon/chalmers-eda487/systick_irq/startup.c ****     
+  43:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }Sys_tick; 
+  44:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  45:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  46:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** typedef volatile Sys_tick* systickptr; 
+  47:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  48:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define SYS_TICK (*((systickptr)0xe000e010))
+  49:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  50:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** typedef volatile int* port32ptr;
+  51:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** typedef volatile long* port16ptr;
+  52:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** typedef volatile char* port8ptr;
+  53:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define SYS_TICK 0xE000E010
+  54:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define STK_CTRL *((port32ptr) SYS_TICK)
+  55:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define STK_LOAD *((port32ptr)(SYS_TICK + 0x04))
+  56:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** #define STK_VAL *((port32ptr)(SYS_TICK + 0x08))
+  57:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  58:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** //systick vektor definierad
+  59:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  60:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** uint8_t systick_flag = 0;
+  61:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  62:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  63:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void delay_250ns ( void )
+  64:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+  63              		.loc 1 64 0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 1, uses_anonymous_args = 0
+  67 0000 80B5     		push	{r7, lr}
+  68              		.cfi_def_cfa_offset 8
+  69              		.cfi_offset 7, -8
+  70              		.cfi_offset 14, -4
+  71 0002 00AF     		add	r7, sp, #0
+  72              		.cfi_def_cfa_register 7
+  65:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_CTRL = 0;
+  73              		.loc 1 65 0
+  74 0004 084B     		ldr	r3, .L3
+  75 0006 0022     		movs	r2, #0
+  76 0008 1A60     		str	r2, [r3]
+  66:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_LOAD = 42;
+  77              		.loc 1 66 0
+  78 000a 084B     		ldr	r3, .L3+4
+  79 000c 2A22     		movs	r2, #42
+  80 000e 1A60     		str	r2, [r3]
+  67:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_VAL = 0;
+  81              		.loc 1 67 0
+  82 0010 074B     		ldr	r3, .L3+8
+  83 0012 0022     		movs	r2, #0
+  84 0014 1A60     		str	r2, [r3]
+  68:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_CTRL = 5;
+  85              		.loc 1 68 0
+  86 0016 044B     		ldr	r3, .L3
+  87 0018 0522     		movs	r2, #5
+  88 001a 1A60     		str	r2, [r3]
+  69:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_CTRL = 7;
+  89              		.loc 1 69 0
+  90 001c 024B     		ldr	r3, .L3
+  91 001e 0722     		movs	r2, #7
+  92 0020 1A60     		str	r2, [r3]
+  70:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }
+  93              		.loc 1 70 0
+  94 0022 C046     		nop
+  95 0024 BD46     		mov	sp, r7
+  96              		@ sp needed
+  97 0026 80BD     		pop	{r7, pc}
+  98              	.L4:
+  99              		.align	2
+ 100              	.L3:
+ 101 0028 10E000E0 		.word	-536813552
+ 102 002c 14E000E0 		.word	-536813548
+ 103 0030 18E000E0 		.word	-536813544
+ 104              		.cfi_endproc
+ 105              	.LFE1:
+ 107              		.align	2
+ 108              		.global	delay_count
+ 109              		.code	16
+ 110              		.thumb_func
+ 112              	delay_count:
+ 113              	.LFB2:
+  71:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  72:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void delay_count(uint32_t count)
+  73:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+ 114              		.loc 1 73 0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 8
+ 117              		@ frame_needed = 1, uses_anonymous_args = 0
+ 118 0034 80B5     		push	{r7, lr}
+ 119              		.cfi_def_cfa_offset 8
+ 120              		.cfi_offset 7, -8
+ 121              		.cfi_offset 14, -4
+ 122 0036 82B0     		sub	sp, sp, #8
+ 123              		.cfi_def_cfa_offset 16
+ 124 0038 00AF     		add	r7, sp, #0
+ 125              		.cfi_def_cfa_register 7
+ 126 003a 7860     		str	r0, [r7, #4]
+  74:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	while(count--)
+ 127              		.loc 1 74 0
+ 128 003c 08E0     		b	.L6
+ 129              	.L9:
+  75:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	{
+  76:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		delay_250ns();
+ 130              		.loc 1 76 0
+ 131 003e FFF7FEFF 		bl	delay_250ns
+ 132              	.L8:
+  77:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		while(1)
+  78:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		{
+  79:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 			if(systick_flag == 1)
+ 133              		.loc 1 79 0
+ 134 0042 084B     		ldr	r3, .L10
+ 135 0044 1B78     		ldrb	r3, [r3]
+ 136 0046 012B     		cmp	r3, #1
+ 137 0048 FBD1     		bne	.L8
+  80:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 			{
+  81:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 				systick_flag = 0;
+ 138              		.loc 1 81 0
+ 139 004a 064B     		ldr	r3, .L10
+ 140 004c 0022     		movs	r2, #0
+ 141 004e 1A70     		strb	r2, [r3]
+ 142              	.L6:
+  74:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	{
+ 143              		.loc 1 74 0
+ 144 0050 7B68     		ldr	r3, [r7, #4]
+ 145 0052 5A1E     		subs	r2, r3, #1
+ 146 0054 7A60     		str	r2, [r7, #4]
+ 147 0056 002B     		cmp	r3, #0
+ 148 0058 F1D1     		bne	.L9
+  82:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 				break;
+  83:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 			}
+  84:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		}
+  85:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	}
+  86:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }
+ 149              		.loc 1 86 0
+ 150 005a C046     		nop
+ 151 005c BD46     		mov	sp, r7
+ 152 005e 02B0     		add	sp, sp, #8
+ 153              		@ sp needed
+ 154 0060 80BD     		pop	{r7, pc}
+ 155              	.L11:
+ 156 0062 C046     		.align	2
+ 157              	.L10:
+ 158 0064 00000000 		.word	systick_flag
+ 159              		.cfi_endproc
+ 160              	.LFE2:
+ 162              		.align	2
+ 163              		.global	systick_irq_handler
+ 164              		.code	16
+ 165              		.thumb_func
+ 167              	systick_irq_handler:
+ 168              	.LFB3:
+  87:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  88:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void systick_irq_handler()
+  89:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+ 169              		.loc 1 89 0
+ 170              		.cfi_startproc
+ 171              		@ args = 0, pretend = 0, frame = 0
+ 172              		@ frame_needed = 1, uses_anonymous_args = 0
+ 173 0068 80B5     		push	{r7, lr}
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 006a 00AF     		add	r7, sp, #0
+ 178              		.cfi_def_cfa_register 7
+  90:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	STK_CTRL = 0;
+ 179              		.loc 1 90 0
+ 180 006c 044B     		ldr	r3, .L13
+ 181 006e 0022     		movs	r2, #0
+ 182 0070 1A60     		str	r2, [r3]
+  91:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	systick_flag = 1;
+ 183              		.loc 1 91 0
+ 184 0072 044B     		ldr	r3, .L13+4
+ 185 0074 0122     		movs	r2, #1
+ 186 0076 1A70     		strb	r2, [r3]
+  92:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }
+ 187              		.loc 1 92 0
+ 188 0078 C046     		nop
+ 189 007a BD46     		mov	sp, r7
+ 190              		@ sp needed
+ 191 007c 80BD     		pop	{r7, pc}
+ 192              	.L14:
+ 193 007e C046     		.align	2
+ 194              	.L13:
+ 195 0080 10E000E0 		.word	-536813552
+ 196 0084 00000000 		.word	systick_flag
+ 197              		.cfi_endproc
+ 198              	.LFE3:
+ 200              		.align	2
+ 201              		.global	init_app
+ 202              		.code	16
+ 203              		.thumb_func
+ 205              	init_app:
+ 206              	.LFB4:
+  93:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+  94:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void init_app()
+  95:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+ 207              		.loc 1 95 0
+ 208              		.cfi_startproc
+ 209              		@ args = 0, pretend = 0, frame = 0
+ 210              		@ frame_needed = 1, uses_anonymous_args = 0
+ 211 0088 80B5     		push	{r7, lr}
+ 212              		.cfi_def_cfa_offset 8
+ 213              		.cfi_offset 7, -8
+ 214              		.cfi_offset 14, -4
+ 215 008a 00AF     		add	r7, sp, #0
+ 216              		.cfi_def_cfa_register 7
+  96:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	GPIO_D.moder = 0x5555;
+ 217              		.loc 1 96 0
+ 218 008c 044B     		ldr	r3, .L16
+ 219 008e 054A     		ldr	r2, .L16+4
+ 220 0090 1A60     		str	r2, [r3]
+  97:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	IRQ.sysTick = systick_irq_handler;
+ 221              		.loc 1 97 0
+ 222 0092 054B     		ldr	r3, .L16+8
+ 223 0094 054A     		ldr	r2, .L16+12
+ 224 0096 DA63     		str	r2, [r3, #60]
+  98:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** }
+ 225              		.loc 1 98 0
+ 226 0098 C046     		nop
+ 227 009a BD46     		mov	sp, r7
+ 228              		@ sp needed
+ 229 009c 80BD     		pop	{r7, pc}
+ 230              	.L17:
+ 231 009e C046     		.align	2
+ 232              	.L16:
+ 233 00a0 000C0240 		.word	1073875968
+ 234 00a4 55550000 		.word	21845
+ 235 00a8 00C00120 		.word	536985600
+ 236 00ac 00000000 		.word	systick_irq_handler
+ 237              		.cfi_endproc
+ 238              	.LFE4:
+ 240              		.align	2
+ 241              		.global	main
+ 242              		.code	16
+ 243              		.thumb_func
+ 245              	main:
+ 246              	.LFB5:
+  99:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 
+ 100:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** void main(void)
+ 101:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** {
+ 247              		.loc 1 101 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 1, uses_anonymous_args = 0
+ 251 00b0 80B5     		push	{r7, lr}
+ 252              		.cfi_def_cfa_offset 8
+ 253              		.cfi_offset 7, -8
+ 254              		.cfi_offset 14, -4
+ 255 00b2 00AF     		add	r7, sp, #0
+ 256              		.cfi_def_cfa_register 7
+ 102:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	init_app();
+ 257              		.loc 1 102 0
+ 258 00b4 FFF7FEFF 		bl	init_app
+ 259              	.L19:
+ 103:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	while(1)
+ 104:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	{
+ 105:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		GPIO_D.odr_low = 0;
+ 260              		.loc 1 105 0 discriminator 1
+ 261 00b8 064B     		ldr	r3, .L20
+ 262 00ba 0022     		movs	r2, #0
+ 263 00bc 1A75     		strb	r2, [r3, #20]
+ 106:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		delay_count(DELAY_COUNT);
+ 264              		.loc 1 106 0 discriminator 1
+ 265 00be 6420     		movs	r0, #100
+ 266 00c0 FFF7FEFF 		bl	delay_count
+ 107:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		GPIO_D.odr_low = 0xFF;
+ 267              		.loc 1 107 0 discriminator 1
+ 268 00c4 034B     		ldr	r3, .L20
+ 269 00c6 FF22     		movs	r2, #255
+ 270 00c8 1A75     		strb	r2, [r3, #20]
+ 108:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 		delay_count(DELAY_COUNT);
+ 271              		.loc 1 108 0 discriminator 1
+ 272 00ca 6420     		movs	r0, #100
+ 273 00cc FFF7FEFF 		bl	delay_count
+ 109:/Users/Simon/chalmers-eda487/systick_irq/startup.c **** 	}
+ 274              		.loc 1 109 0 discriminator 1
+ 275 00d0 F2E7     		b	.L19
+ 276              	.L21:
+ 277 00d2 C046     		.align	2
+ 278              	.L20:
+ 279 00d4 000C0240 		.word	1073875968
+ 280              		.cfi_endproc
+ 281              	.LFE5:
+ 283              	.Letext0:
+ 284              		.file 2 "/Users/Simon/chalmers-eda487/libraries/gpio.h"
+ 285              		.file 3 "/Users/Simon/chalmers-eda487/libraries/irq.h"

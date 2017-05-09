@@ -3,17 +3,17 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=systick_irq
+ProjectName            :=flip_flop_irq_ack
 ConfigurationName      :=Debug
 WorkspacePath          :=/Users/Simon/chalmers-eda487
-ProjectPath            :=/Users/Simon/chalmers-eda487/systick_irq
+ProjectPath            :=/Users/Simon/chalmers-eda487/flip_flop_irq_ack
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Simon Hansson
-Date                   :=08/05/2017
+Date                   :=09/05/2017
 CodeLitePath           :="/Users/Simon/Library/Application Support/codelite"
 LinkerName             :=/Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-g++
 SharedObjectLinkerName :=/Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-g++ -shared -fPIC
@@ -32,7 +32,7 @@ Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="systick_irq.txt"
+ObjectsFileList        :="flip_flop_irq_ack.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  -nostartfiles -nostdlib -T$(ProjectPath)/md407-ram.x
@@ -80,7 +80,7 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 
 PostBuild:
 	@echo Executing Post Build commands ...
-	arm-none-eabi-objcopy -S -O srec  ./Debug/systick_irq.elf ./Debug/systick_irq.s19
+	arm-none-eabi-objcopy -S -O srec  ./Debug/flip_flop_irq_ack.elf ./Debug/flip_flop_irq_ack.s19
 	@echo Done
 
 MakeIntermediateDirs:
@@ -97,7 +97,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/systick_irq/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/flip_flop_irq_ack/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
 

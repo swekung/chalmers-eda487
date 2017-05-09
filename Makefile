@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ systick_irq - Debug ]----------"
-	@cd "systick_irq" && "$(MAKE)" -f  "systick_irq.mk" && "$(MAKE)" -f  "systick_irq.mk" PostBuild
+	@echo "----------Building project:[ flip_flop_irq_ack - Debug ]----------"
+	@cd "flip_flop_irq_ack" && "$(MAKE)" -f  "flip_flop_irq_ack.mk" && "$(MAKE)" -f  "flip_flop_irq_ack.mk" PostBuild
 clean:
-	@echo "----------Cleaning project:[ systick_irq - Debug ]----------"
-	@cd "systick_irq" && "$(MAKE)" -f  "systick_irq.mk" clean
+	@echo "----------Cleaning project:[ flip_flop_irq_ack - Debug ]----------"
+	@cd "flip_flop_irq_ack" && "$(MAKE)" -f  "flip_flop_irq_ack.mk" clean

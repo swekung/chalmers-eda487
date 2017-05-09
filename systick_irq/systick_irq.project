@@ -21,17 +21,8 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="startup.c"/>
-    <File Name="../libraries/delay.h"/>
-    <File Name="../libraries/bitar.h"/>
-    <File Name="../libraries/display.h"/>
     <File Name="../libraries/gpio.h"/>
     <File Name="../libraries/irq.h"/>
-    <File Name="../libraries/keypad.h"/>
-    <File Name="../libraries/object.h"/>
-    <File Name="../libraries/delay.c"/>
-    <File Name="../libraries/display.c"/>
-    <File Name="../libraries/keypad.c"/>
-    <File Name="../libraries/object.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
