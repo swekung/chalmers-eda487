@@ -31,13 +31,14 @@ void irq_handler()
 
 void irq_init()
 {
+	RCC_APB2ENR |= 0x4000; /* Sets clock to enable interrupts */
 	SYSCFG.exticr1 &= 0x0fff;  /* Negates upper 4 bits */
 	SYSCFG.exticr1 |= 0x4000;  /* Configures for IRQ3 on ETIX3 */
 	EXTI.imr |= (1 << 3); /* Configures EXTI3 to generate interrupts */
 	EXTI.ftsr |= (1 << 3); /* Configures EXTI3 to trigger on negative flank */
 	IRQ.extiLine3 = irq_handler; /* Sets the function irq_handler to handle interrupts from EXTI3 */
 	*((uint32_t *) 0xE000E100) |= (1<<9); /* Sets NVIC priority */
-	RCC_APB2ENR |= 0x4000; /* Sets clock to enable interrupts */
+
 	
 }
 
