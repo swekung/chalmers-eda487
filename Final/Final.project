@@ -23,7 +23,6 @@
     <File Name="startup.c"/>
     <File Name="usart.c"/>
     <File Name="usart.h"/>
-    <File Name="stringReader.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
@@ -40,7 +39,7 @@
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="Cross GCC ( arm-none-eabi )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-mthumb;-Wall;-march=armv6-m;-msoft-float;-Wa,-adhln=test.s" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="/Users/Simon/chalmers-eda487/libraries"/>
+        <IncludePath Value="C:\Users\Ludvig\Documents\chalmers-eda487\libraries"/>
       </Compiler>
       <Linker Options="-nostartfiles;-nostdlib;-T$(ProjectPath)/md407-ram.x" Required="yes">
         <LibraryPath Value="/Applications/gcc-arm/arm-none-eabi/lib/armv6-m"/>

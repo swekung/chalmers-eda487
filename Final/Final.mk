@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=Final
 ConfigurationName      :=Debug
-WorkspacePath          :=/Users/Simon/chalmers-eda487
-ProjectPath            :=/Users/Simon/chalmers-eda487/Final
+WorkspacePath          :=C:/Users/Ludvig/Documents/chalmers-eda487
+ProjectPath            :=C:/Users/Ludvig/Documents/chalmers-eda487/Final
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Simon Hansson
+User                   :=Ludvig
 Date                   :=16/05/2017
-CodeLitePath           :="/Users/Simon/Library/Application Support/codelite"
-LinkerName             :=/Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-g++
-SharedObjectLinkerName :=/Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-g++ -shared -fPIC
+CodeLitePath           :=C:/cseapp/CodeLite
+LinkerName             :=$(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-g++.exe
+SharedObjectLinkerName :=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi-g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -34,9 +34,11 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=-E
 ObjectsFileList        :="Final.txt"
 PCHCompileFlags        :=
-MakeDirCommand         :=mkdir -p
+MakeDirCommand         :=makedir
+RcCmpOptions           := 
+RcCompilerName         :=
 LinkOptions            :=  -nostartfiles -nostdlib -T$(ProjectPath)/md407-ram.x
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)/Users/Simon/chalmers-eda487/libraries 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)C:\Users\Ludvig\Documents\chalmers-eda487\libraries 
 IncludePCH             := 
 RcIncludePath          := 
 Libs                   := $(LibrarySwitch)gcc $(LibrarySwitch)c_nano 
@@ -47,19 +49,19 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)/Application
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-ar rcu
-CXX      := /Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-g++
-CC       := /Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-gcc
+AR       := $(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-ar.exe rcu
+CXX      := $(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-g++.exe
+CC       := $(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-gcc.exe
 CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -mthumb -Wall -march=armv6-m -msoft-float -Wa,-adhln=test.s $(Preprocessors)
 ASFLAGS  := 
-AS       := /Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi-as
+AS       := $(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=/Applications/codelite.app/Contents/SharedSupport/
+CodeLiteDir:=C:\cseapp\CodeLite
 Objects0=$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IntermediateDirectory)/usart.c$(ObjectSuffix) 
 
 
@@ -84,11 +86,11 @@ PostBuild:
 	@echo Done
 
 MakeIntermediateDirs:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@$(MakeDirCommand) "./Debug"
 
 
 $(IntermediateDirectory)/.d:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@$(MakeDirCommand) "./Debug"
 
 PreBuild:
 
@@ -97,20 +99,20 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/Final/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/Ludvig/Documents/chalmers-eda487/Final/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
 
 $(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix)startup.c
 
 $(IntermediateDirectory)/usart.c$(ObjectSuffix): usart.c $(IntermediateDirectory)/usart.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/Final/usart.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/usart.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/Ludvig/Documents/chalmers-eda487/Final/usart.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/usart.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/usart.c$(DependSuffix): usart.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/usart.c$(ObjectSuffix) -MF$(IntermediateDirectory)/usart.c$(DependSuffix) -MM usart.c
 
 $(IntermediateDirectory)/usart.c$(PreprocessSuffix): usart.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/usart.c$(PreprocessSuffix) usart.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/usart.c$(PreprocessSuffix)usart.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

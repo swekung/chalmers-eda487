@@ -1,6 +1,5 @@
-Debug/startup.c.o: startup.c \
- /Users/Simon/chalmers-eda487/libraries/types.h usart.h
+Debug/startup.c.o: startup.c types.h usart.h
 
-/Users/Simon/chalmers-eda487/libraries/types.h:
+types.h:
 
 usart.h:
