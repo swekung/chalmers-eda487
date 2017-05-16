@@ -37,3 +37,23 @@ uint8_t inchar ()
 	return c;
 }
 
+uint8_t[] recieveString()
+{
+	uint8_t tempString[256];
+	for(uint16_t i = 0; i < 256; i++)
+	{
+		uint8_t tempChar = inchar();
+		while(tempChar =! '{')
+		{
+			tempChar = inchar();
+		}
+		tempString[i] = tempChar;
+		if(tempChar == '}')
+		{
+			break;
+		}
+	}
+	return tempString;
+	
+}
+

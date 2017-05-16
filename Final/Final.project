@@ -23,6 +23,8 @@
     <File Name="startup.c"/>
     <File Name="usart.c"/>
     <File Name="usart.h"/>
+    <File Name="ascii.c"/>
+    <File Name="ascii.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>

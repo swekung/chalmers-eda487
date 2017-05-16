@@ -28,10 +28,7 @@ void main(void)
 	uint8_t c;
 	app_init();
 	iniuart();
-	while(1)
-	{
-		uint8_t c = tstchar();
-		outchar(c);
-	}
+	uint32_t *arrayPointerString;
+	
 }
 
