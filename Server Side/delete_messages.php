@@ -6,7 +6,7 @@ $user = 'root';
 $password = 'root';
 $db = 'message';
 $host = '127.0.0.1';
-$port = 3306;
+$port = 8889;
 
 
 $link = mysqli_init();

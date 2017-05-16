@@ -3,10 +3,10 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=flipflop_irq
+ProjectName            :=Final
 ConfigurationName      :=Debug
 WorkspacePath          :=/Users/Simon/chalmers-eda487
-ProjectPath            :=/Users/Simon/chalmers-eda487/flipflop_irq
+ProjectPath            :=/Users/Simon/chalmers-eda487/Final
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -32,7 +32,7 @@ Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="flipflop_irq.txt"
+ObjectsFileList        :="Final.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  -nostartfiles -nostdlib -T$(ProjectPath)/md407-ram.x
@@ -60,7 +60,7 @@ AS       := /Applications/gcc-arm/gcc-arm-none-eabi-5_4-2016q2/bin/arm-none-eabi
 ## User defined environment variables
 ##
 CodeLiteDir:=/Applications/codelite.app/Contents/SharedSupport/
-Objects0=$(IntermediateDirectory)/startup.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IntermediateDirectory)/usart.c$(ObjectSuffix) 
 
 
 
@@ -80,7 +80,7 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 
 PostBuild:
 	@echo Executing Post Build commands ...
-	arm-none-eabi-objcopy -S -O srec  ./Debug/flipflop_irq.elf ./Debug/flipflop_irq.s19
+	arm-none-eabi-objcopy -S -O srec  ./Debug/Final.elf ./Debug/Final.s19
 	@echo Done
 
 MakeIntermediateDirs:
@@ -97,12 +97,20 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/flipflop_irq/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/Final/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
 
 $(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
+
+$(IntermediateDirectory)/usart.c$(ObjectSuffix): usart.c $(IntermediateDirectory)/usart.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/Users/Simon/chalmers-eda487/Final/usart.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/usart.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/usart.c$(DependSuffix): usart.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/usart.c$(ObjectSuffix) -MF$(IntermediateDirectory)/usart.c$(DependSuffix) -MM usart.c
+
+$(IntermediateDirectory)/usart.c$(PreprocessSuffix): usart.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/usart.c$(PreprocessSuffix) usart.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

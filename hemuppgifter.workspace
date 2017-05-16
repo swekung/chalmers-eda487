@@ -4,7 +4,8 @@
   <Project Name="systick_irq" Path="systick_irq/systick_irq.project" Active="No"/>
   <Project Name="flip_flop_irq_ack" Path="flip_flop_irq_ack/flip_flop_irq_ack.project" Active="No"/>
   <Project Name="flipflop_irq" Path="flipflop_irq/flipflop_irq.project" Active="No"/>
-  <Project Name="USART_test" Path="USART_test/USART_test.project" Active="Yes"/>
+  <Project Name="USART_test" Path="USART_test/USART_test.project" Active="No"/>
+  <Project Name="Final" Path="Final/Final.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -20,6 +21,7 @@
       <Project Name="flip_flop_irq_ack" ConfigName="Debug"/>
       <Project Name="flipflop_irq" ConfigName="Debug"/>
       <Project Name="USART_test" ConfigName="Debug"/>
+      <Project Name="Final" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -35,6 +37,7 @@
       <Project Name="flip_flop_irq_ack" ConfigName="Release"/>
       <Project Name="flipflop_irq" ConfigName="Release"/>
       <Project Name="USART_test" ConfigName="Release"/>
+      <Project Name="Final" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

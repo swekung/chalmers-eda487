@@ -16,22 +16,18 @@ asm volatile(
 
 #include "types.h"
 #include "usart.h"
-#include "display.h"
-
-void app_init()
-{
-	
-}
 
 void main(void)
 {
 	uint8_t c;
-	app_init();
 	iniuart();
 	while(1)
 	{
 		uint8_t c = tstchar();
-		outchar(c);
+		if(c != 0)
+		{
+			outchar(c);
+		}
 	}
 }
 
