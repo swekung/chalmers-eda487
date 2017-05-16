@@ -23,6 +23,7 @@
     <File Name="startup.c"/>
     <File Name="usart.c"/>
     <File Name="usart.h"/>
+    <File Name="stringReader.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
