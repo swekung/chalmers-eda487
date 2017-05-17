@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ Final - Debug ]----------"
-	@cd "Final" && "$(MAKE)" -f  "Final.mk" && "$(MAKE)" -f  "Final.mk" PostBuild
+	@echo "----------Building project:[ UART_Messaging - Debug ]----------"
+	@cd "UART_Messaging" && "$(MAKE)" -f  "UART_Messaging.mk" && "$(MAKE)" -f  "UART_Messaging.mk" PostBuild
 clean:
-	@echo "----------Cleaning project:[ Final - Debug ]----------"
-	@cd "Final" && "$(MAKE)" -f  "Final.mk" clean
+	@echo "----------Cleaning project:[ UART_Messaging - Debug ]----------"
+	@cd "UART_Messaging" && "$(MAKE)" -f  "UART_Messaging.mk" clean
